@@ -5,21 +5,24 @@
 var App = function() {};
 
 App.prototype._init = function() {
-  console.log('init!');
-
-  var _this = this;
-  var token = 'whKeouEYlyPpfzmYshRvfbFYlwqBtflZYLziIWyl';
-  var base_url = 'https://api.discogs.com/users/davidTrussler/collection';
-  var url = base_url + '/folders?token=' + token;
-
-  $.get(url, function(data) {
-    _this._doData(data);
-  });
+  this._setUpLinks();
 }
 
-App.prototype._doData = function(data) {
-  console.log('_doData!');
-  console.log(data);
+App.prototype._setUpLinks = function() {
+  console.log('_setUpLinks!');
+
+  var $links = $(document).find('a');
+  var data = new Data();
+
+  $links.each(function() {
+    var action = this.href.split('/')[this.href.split('/').length - 1];
+
+    $(this).click(function(e) {
+      e.preventDefault();
+
+      data.getData(action);
+    });
+  });
 }
 
 $(document).ready(function() {
