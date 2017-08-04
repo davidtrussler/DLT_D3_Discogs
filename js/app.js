@@ -8,7 +8,9 @@ App.prototype._init = function() {
   console.log('init!');
 
   var _this = this;
-  var url = 'https://api.discogs.com/users/davidTrussler/collection/folders/0/releases?per_page=500';
+  var token = 'whKeouEYlyPpfzmYshRvfbFYlwqBtflZYLziIWyl';
+  var base_url = 'https://api.discogs.com/users/davidTrussler/collection';
+  var url = base_url + '/folders?token=' + token;
 
   $.get(url, function(data) {
     _this._doData(data);
