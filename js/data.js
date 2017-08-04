@@ -1,5 +1,6 @@
 /*
  * data.js
+ * gets the data requested via ajax and passes it on to the required drawing class
 **/
 
 var Data = function() {
@@ -8,11 +9,28 @@ var Data = function() {
 };
 
 Data.prototype.getCategories = function() {
+  console.log('getCategories!');
+
+  var _this = this;
   var url = this.base_url + '/folders?token=' + this.token;
 
   $.get(url, function(response) {
-    console.log(response.folders);
+    _this._parseResponse(response);
 
     // error handling etc.
   });
+}
+
+Data.prototype._parseResponse = function(response) {
+  // remove categories: all, uncategorised
+  var categories = [];
+  var draw = new Draw();
+
+  response.folders.forEach(function(folder) {
+    if (folder.name !== 'All' && folder.name !== 'Uncategorized') {
+      categories.push(folder);
+    }
+  });
+
+  draw.drawBarchart(categories);
 }

@@ -1,5 +1,6 @@
 /*
  * app.js
+ * sets up the app when the page is loaded
 **/
 
 var App = function() {};
