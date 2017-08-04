@@ -9,8 +9,6 @@ App.prototype._init = function() {
 }
 
 App.prototype._setUpLinks = function() {
-  console.log('_setUpLinks!');
-
   var $links = $(document).find('a');
   var data = new Data();
 
@@ -20,7 +18,9 @@ App.prototype._setUpLinks = function() {
     $(this).click(function(e) {
       e.preventDefault();
 
-      data.getData(action);
+      if (action === 'categories') {
+        data.getCategories();
+      }
     });
   });
 }
