@@ -5,30 +5,44 @@
 
 var Draw = function() {};
 
-// this renders a basic barchart based on esarlier work on "They Work for You"
+// this renders a basic barchart based on earlier work on "They Work for You"
 Draw.prototype.drawBarchart = function(dataset) {
   console.log('drawBarchart!');
   console.log(dataset);
 
-  var w = 500;
-  var h = 350;
+  var xScale =
+    d3.scaleLinear()
+      .domain([0, 50])
+      .range([0, 600]);
+
+  var yScale =
+    d3.scaleLinear()
+      .domain([0, 50])
+      .range([0, 600]);
+
+  var w = 800;
+  var h = 640;
   var barPadding = 1;
   var svg = d3
-    .select('body')
+    .select('#svg-container')
     .append('svg')
     .attr('width', w)
-    .attr('height', h);
+    .attr('height', h)
+    .attr('class', 'barchart');
 
-  svg
+  // barchart
+  var chart = svg
     .selectAll('rect')
     .data(dataset)
     .enter()
     .append('rect')
     .attr('x', function(d, i) {
-      return i * (w / dataset.length);
+      // return i * (w / dataset.length);
+      return xScale(i * (w / dataset.length));
     })
     .attr('y', function(d) {
-      return h - d.count;
+      // return h - d.count;
+      return yScale(h - d.count);
     })
     .attr('width', w / dataset.length - barPadding)
     .attr('height', function(d) {
@@ -36,10 +50,13 @@ Draw.prototype.drawBarchart = function(dataset) {
     })
     .attr('class', function(d) {
       return d.name
-              .toLowerCase()
-              .replace(/[^a-z]/g, '');
+        .toLowerCase()
+        .replace(/[^a-z]/g, '')
     });
 
+    // console.log(chart);
+
+  /* text
   svg
     .selectAll('text')
     .data(dataset)
@@ -57,4 +74,5 @@ Draw.prototype.drawBarchart = function(dataset) {
     .attr('text-anchor', 'middle')
     .attr('font-family', 'sans-serif')
     .attr('font-size', '1em');
+  */
 }
