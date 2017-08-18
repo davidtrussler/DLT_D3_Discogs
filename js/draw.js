@@ -12,14 +12,14 @@ Draw.prototype.drawBarchart = function(dataset) {
 
   var w = 800;
   var h = 640;
-  var barPadding = 1;
+  // var barPadding = 1;
   var min = 0;
   var max = d3.max(dataset, function(d) {return d.count;});
 
-  var yScale =
+  var xScale =
     d3.scaleLinear()
       .domain([min, max])
-      .range([0, h]);
+      .range([0, w]);
 
   var svg = d3
     .select('#svg-container')
@@ -34,15 +34,13 @@ Draw.prototype.drawBarchart = function(dataset) {
     .data(dataset)
     .enter()
     .append('rect')
-    .attr('x', function(d, i) {
-      return i * (w / dataset.length);
+    .attr('y', function(d, i) {
+      return i * (h / dataset.length);
     })
-    .attr('y', function(d) {
-      return h - yScale(d.count);
-    })
-    .attr('width', w / dataset.length - barPadding)
-    .attr('height', function(d) {
-      return yScale(d.count);
+    .attr('x', 0)
+    .attr('height', (h / dataset.length))
+    .attr('width', function(d) {
+      return xScale(d.count);
     })
     .attr('class', function(d) {
       return d.name
