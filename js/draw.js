@@ -13,10 +13,12 @@ Draw.prototype.drawBarchart = function(dataset) {
   var w = 800;
   var h = 640;
   var barPadding = 1;
+  var min = 0;
+  var max = d3.max(dataset, function(d) {return d.count;});
 
   var yScale =
     d3.scaleLinear()
-      .domain([0, 50])
+      .domain([min, max])
       .range([0, h]);
 
   var svg = d3
