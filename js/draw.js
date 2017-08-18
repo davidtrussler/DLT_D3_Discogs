@@ -10,19 +10,15 @@ Draw.prototype.drawBarchart = function(dataset) {
   console.log('drawBarchart!');
   console.log(dataset);
 
-  var xScale =
-    d3.scaleLinear()
-      .domain([0, 50])
-      .range([0, 600]);
+  var w = 800;
+  var h = 640;
+  var barPadding = 1;
 
   var yScale =
     d3.scaleLinear()
       .domain([0, 50])
-      .range([0, 600]);
+      .range([0, h]);
 
-  var w = 800;
-  var h = 640;
-  var barPadding = 1;
   var svg = d3
     .select('#svg-container')
     .append('svg')
@@ -37,24 +33,20 @@ Draw.prototype.drawBarchart = function(dataset) {
     .enter()
     .append('rect')
     .attr('x', function(d, i) {
-      // return i * (w / dataset.length);
-      return xScale(i * (w / dataset.length));
+      return i * (w / dataset.length);
     })
     .attr('y', function(d) {
-      // return h - d.count;
-      return yScale(h - d.count);
+      return h - yScale(d.count);
     })
     .attr('width', w / dataset.length - barPadding)
     .attr('height', function(d) {
-      return d.count;
+      return yScale(d.count);
     })
     .attr('class', function(d) {
       return d.name
         .toLowerCase()
         .replace(/[^a-z]/g, '')
     });
-
-    // console.log(chart);
 
   /* text
   svg
