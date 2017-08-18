@@ -12,7 +12,6 @@ Draw.prototype.drawBarchart = function(dataset) {
 
   var w = 800;
   var h = 640;
-  // var barPadding = 1;
   var min = 0;
   var max = d3.max(dataset, function(d) {return d.count;});
 
@@ -48,7 +47,6 @@ Draw.prototype.drawBarchart = function(dataset) {
         .replace(/[^a-z]/g, '')
     });
 
-  /* text
   svg
     .selectAll('text')
     .data(dataset)
@@ -57,14 +55,11 @@ Draw.prototype.drawBarchart = function(dataset) {
     .text(function(d) {
       return d.name;
     })
-    .attr('x', function(d, i) {
-      return (i * (w / dataset.length)) + ((w / dataset.length - barPadding) / 2);
+    .attr('x', 0)
+    .attr('y', function(d, i) {
+      return ((i * (h / dataset.length)) + (h / dataset.length / 1.5));
     })
-    .attr('y', function(d) {
-      return d.count;
-    })
-    .attr('text-anchor', 'middle')
+    .attr('text-anchor', 'left')
     .attr('font-family', 'sans-serif')
     .attr('font-size', '1em');
-  */
 }
