@@ -1,0 +1,17 @@
+svg {
+  path {
+    fill: green;
+
+    &:nth-child(4n + 1) {
+      fill: red;
+    }
+
+    &:nth-child(4n + 2) {
+      fill: blue;
+    }
+
+    &:nth-child(4n + 3) {
+      fill: teal;
+    }
+  }
+}

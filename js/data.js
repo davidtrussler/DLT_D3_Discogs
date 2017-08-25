@@ -24,7 +24,8 @@ Data.prototype.getCategories = function() {
 Data.prototype._parseResponse = function(response) {
   // remove categories: all, uncategorised
   var categories = [];
-  var draw = new Draw();
+  // var barchart = new Barchart();
+  var piechart = new Piechart();
 
   response.folders.forEach(function(folder) {
     if (folder.name !== 'All' && folder.name !== 'Uncategorized') {
@@ -32,5 +33,6 @@ Data.prototype._parseResponse = function(response) {
     }
   });
 
-  draw.drawBarchart(categories);
+  // barchart.draw(categories);
+  piechart.draw(categories);
 }

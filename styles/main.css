@@ -3,13 +3,23 @@
 
 svg {
   display: block; }
-  svg rect {
-    fill: green; }
-    svg rect:nth-child(4n + 1) {
-      fill: red; }
-    svg rect:nth-child(4n + 2) {
-      fill: blue; }
-    svg rect:nth-child(4n + 3) {
-      fill: teal; }
+
+svg rect {
+  fill: green; }
+  svg rect:nth-child(4n + 1) {
+    fill: red; }
+  svg rect:nth-child(4n + 2) {
+    fill: blue; }
+  svg rect:nth-child(4n + 3) {
+    fill: teal; }
+
+svg path {
+  fill: green; }
+  svg path:nth-child(4n + 1) {
+    fill: red; }
+  svg path:nth-child(4n + 2) {
+    fill: blue; }
+  svg path:nth-child(4n + 3) {
+    fill: teal; }
 
 /*# sourceMappingURL=main.css.map */

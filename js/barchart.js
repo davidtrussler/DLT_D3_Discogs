@@ -1,13 +1,14 @@
 /*
- * draw.js
- * Takes data and draws various representations of it
+ * barchart.js
+ * Takes data and renders a basic barchart
+ * based on earlier work on "They Work for You"
 **/
 
-var Draw = function() {};
+var Barchart = function() {};
 
-// this renders a basic barchart based on earlier work on "They Work for You"
-Draw.prototype.drawBarchart = function(dataset) {
-  console.log('drawBarchart!');
+// this
+Barchart.prototype.draw = function(dataset) {
+  console.log('draw!');
   console.log(dataset);
 
   var w = 800;
