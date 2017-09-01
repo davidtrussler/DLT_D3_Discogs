@@ -12,11 +12,16 @@ Piechart.prototype.draw = function(dataset) {
   // applies d3.pie to the data
   // creates an array of objects based on dataset
   // each containing: original data, start/end angles etc.
-  var arcs = d3.pie().value(
-    function(d) {
-      return d.count;
-    }
-  )(dataset);
+  var arcs =
+    d3.pie()
+      .value(
+        function(d) {
+          return d.count;
+        }
+      )(dataset)
+      .sort(function(a, b) {
+        return a.data.name.localeCompare(b.data.name);
+      });
 
   var arc = d3.arc()
     .innerRadius(0)
