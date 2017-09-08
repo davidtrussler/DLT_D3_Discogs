@@ -14,25 +14,35 @@ Data.prototype.getCategories = function() {
   var _this = this;
   var url = this.base_url + '/folders?token=' + this.token;
 
+  /*
   $.get(url, function(response) {
     _this._parseResponse(response);
 
     // error handling etc.
   });
+  */
+
+   // _this._parseResponse();
 }
 
 Data.prototype._parseResponse = function(response) {
-  // remove categories: all, uncategorised
-  var categories = [];
-  // var barchart = new Barchart();
-  var piechart = new Piechart();
+  // var categories = [];
 
+  /* remove categories: all, uncategorised
   response.folders.forEach(function(folder) {
     if (folder.name !== 'All' && folder.name !== 'Uncategorized') {
       categories.push(folder);
     }
   });
+  */
+
+  // var barchart = new Barchart();
+  // var piechart = new Piechart();
+  var force = new Force();
+
+  console.log('force: ', force);
 
   // barchart.draw(categories);
-  piechart.draw(categories);
+  // piechart.draw(categories);
+  force.draw();
 }
