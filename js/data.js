@@ -12,20 +12,21 @@ Data.prototype.getCategories = function() {
   console.log('getCategories!');
 
   var _this = this;
-  var url = this.base_url + '/folders?token=' + this.token;
+  // var url = this.base_url + '/folders?token=' + this.token;
+  var url = 'http://localhost:5000/src/response.json';
 
-  /*
   $.get(url, function(response) {
     _this._parseResponse(response);
 
     // error handling etc.
   });
-  */
 
    // _this._parseResponse();
 }
 
 Data.prototype._parseResponse = function(response) {
+  console.log(response);
+
   // var categories = [];
 
   /* remove categories: all, uncategorised
