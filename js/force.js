@@ -11,15 +11,15 @@ Force.prototype.draw = function() {
   var w = 800;
   var h = 600;
   var nodes = [
-    {num: 1},
-    {num: 2},
+    {num: 100},
+    {num: 200},
   ];
-  var links = [
-    {
-      source: 0,
-      target: 1
-    }
-  ];
+  // var links = [
+  //   {
+  //     source: 0,
+  //     target: 1
+  //   }
+  // ];
   var svg = document.createElement('svg');
   var simulation = d3.forceSimulation(nodes)
     .on('tick', ticked);
@@ -27,23 +27,24 @@ Force.prototype.draw = function() {
   svg.style.width = w + 'px';
   svg.style.height = h + 'px';
 
-  document.getElementById('svg-container')
-    .appendChild(svg);
+  document.getElementById('svg-container').appendChild(svg);
 
   function ticked() {
+    // console.log('ticked!');
+
     var u = d3.select(svg)
       .selectAll('circle')
       .data(nodes);
 
     u.enter()
       .append('circle')
-      .attr('r', 5)
+      .attr('r', 10)
       .merge(u)
       .attr('cx', function(d) {
-        return d.x;
+        return d.num;
       })
       .attr('cy', function(d) {
-        return d.y;
+        return d.num;
       });
 
     u.exit().remove();
